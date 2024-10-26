@@ -52,10 +52,16 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, Go
             width: 100%;
         }
     </style>
+    <!-- Google Maps API -->
+    <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXh9iR3N4E5svMN6V93Kdd3poYfzMUZwc&callback=initMap">
+    </script>
+
+    <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" async defer></script>
+
 </head>
 <body>
 
@@ -70,7 +76,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, Go
         <a href="home.html">Home</a>
         <a href="about.html">Our Mission</a>
         <a href="map.html">Map</a>
-        <a href="createAccount.html">Sign up/Login</a>
+        <a href="createAccount.html">Sign Up/Login</a>
     </nav>
 
     <!-- About/Purpose Section -->
@@ -121,27 +127,50 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, Go
         const auth = firebase.auth();
         const db = firebase.firestore();
 
-        // Google Maps Initialization
+        // Initialize the Google Map
         function initMap() {
-            const map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 37.7749, lng: -122.4194 }, // Default center (San Francisco)
-                zoom: 12
-            });
-            
-            // Example markers (You can retrieve these from your database)
-            const markers = [
-                { lat: 37.7749, lng: -122.4194, label: 'Food Provider 1' },
-                { lat: 37.7849, lng: -122.4294, label: 'Shelter 1' },
-            ];
-            
-            markers.forEach(location => {
+            const options = {
+                zoom: 10,
+                center: { lat: 40.4259, lng: -86.9081 }
+            };
+
+            const map = new google.maps.Map(document.getElementById('map'), options);
+
+            // uses geolocation API to get user's current location
+            // note: geolocation API may be off by one or two blocks
+            if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const userLocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                // Update map center to user's current location
+                map.setCenter(userLocation);
+
+                // Place a marker at the user's current location
                 new google.maps.Marker({
-                    position: { lat: location.lat, lng: location.lng },
+                    position: userLocation,
                     map: map,
-                    title: location.label
+                    title: 'Your Current Location'
                 });
-            });
+            },
+            (error) => {
+                console.error("Error getting location: ", error);
+                // Fallback behavior if geolocation fails
+            }
+        );
+    } else {
+        console.error("Geolocation not supported by this browser.");
+    }
+            //const marker = new google.maps.Marker({
+               // position: { lat: 40.4259, lng: -86.9081 },
+                //map: map,
+                //title: 'Food Provider Location'
+            //});
         }
+
 
         // Firebase Authentication (Sign Up and Login)
         function signUp() {
