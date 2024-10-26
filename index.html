@@ -46,15 +46,16 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, Go
             background-color: #333;
             color: white;
             text-align: center;
-            padding: 10px 0;
+            padding: 1px 0;
             position: fixed;
             bottom: 0;
-            width: 100%;
+            width: 10%;
         }
     </style>
     <!-- Google Maps API -->
     <script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXh9iR3N4E5svMN6V93Kdd3poYfzMUZwc&callback=initMap">
+    const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+    const scriptSrc = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`
     </script>
 
     <!-- Firebase SDKs -->
