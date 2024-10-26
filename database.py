@@ -15,11 +15,12 @@ def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
 # Function to add a user
-def add_user(username, password, account_type):
+def add_user(username, password, account_type, location):
     user_data = {
         'username': username,
         'password': hash_password(password), # Store hashed password
-        'account_type': account_type
+        'account_type': account_type,
+        'location': location
     }
     # Add user data to the 'users' collection in Firestore
     db.collection('Users').add(user_data)
@@ -37,8 +38,8 @@ def get_users():
 
 # Test Firebase database
 if __name__ == '__main__':
-    add_user('user1', 'password123', "recipient")
-    add_user('user2', 'mypassword', "distributor")
+    add_user('user1', 'password123', "recipient", "400 McCutcheon Dr, West Lafayette, IN, 47906")
+    add_user('user2', 'mypassword', "distributor", "400 McCutcheon Dr, West Lafayette, IN, 47906")
 
     users = get_users()
     print("All users:")
