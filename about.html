@@ -53,9 +53,16 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, Go
         }
     </style>
     <!-- Google Maps API -->
-    <script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXh9iR3N4E5svMN6V93Kdd3poYfzMUZwc&callback=initMap">
+    
+    <script type="module">
+        const googleApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+    
+        const script = document.createElement('script');
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${googleApiKey}&callback=initMap`;
+        script.async = true;
+        document.head.appendChild(script);
     </script>
+    
 
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
