@@ -94,6 +94,24 @@
         <div id="map"></div>
     </section>
 
+    <!-- Distributor Matching Section -->
+    <form action="/match" method="POST">
+        <label for="address">Enter your address:</label>
+        <input type="address" id="address" name="address" required>
+        <label for="radius">Enter the radius (in meters) within which to find distributors:</label>
+        <input type="radius" id="radius" name="radius" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if names is not none %}
+        <h2>List of Locations:</h2>
+        <ul>
+            {% for name in names %}
+                <li>{{ name }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 Food Waste Reduction Website</p>
