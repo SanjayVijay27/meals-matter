@@ -47,9 +47,9 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, Go
             color: white;
             text-align: center;
             padding: 1px 0;
-            position: fixed;
+            position: relative;
             bottom: 0;
-            width: 10%;
+            width: 100%;
         }
     </style>
     <!-- Google Maps API -->
@@ -91,23 +91,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, Go
         <div id="map"></div>
     </section>
 
-    <!-- Create Account/Login Section -->
-    <section id="account">
-        <h2>Create Account or Login</h2>
-        <form id="accountForm">
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" required><br><br>
-            
-            <label for="password">Password:</label><br>
-            <input type="password" id="password" required><br><br>
-            
-            <button type="button" onclick="signUp()">Sign Up</button>
-            <button type="button" onclick="login()">Login</button>
-            <button type="button" onclick = "googleSignIn()"> Sign In With Google</button>
-        </form>
-        <div id="accountStatus"></div>
-    </section>
-
+    
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 Food Waste Reduction Website</p>
@@ -205,12 +189,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, Go
                 });
         }
 
-        function googleSignIn() {
-    // Set up Google provider
-    
-    const provider = new firebase.auth.GoogleAuthProvider();
-
-    // Sign in with a popup window
+        // Sign in with a popup window
     auth.signInWithPopup(provider)
         .then((result) => {
             // Get user info from result
@@ -242,7 +221,6 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, Go
         .catch((error) => {
             document.getElementById('accountStatus').innerText = 'Google Sign-In failed: ' + error.message;
         });
-}
     </script>
 </body>
 </html>

@@ -1,11 +1,5 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider, signInWithRedirect } from "firebase/auth";
-<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-database.js"></script>
-
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meals Matter</title>
     <style>
@@ -46,8 +40,8 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, Go
             background-color: #333;
             color: white;
             text-align: center;
-            padding: 10px 0;
-            position: fixed;
+            padding: 1px 0;
+            position: relative;
             bottom: 0;
             width: 100%;
         }
@@ -56,7 +50,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, Go
     <script async
     src="{{ api_url }}">
     </script>
-
+    
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
@@ -79,17 +73,11 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, Go
         <a href="createAccount.html">Sign Up/Login</a>
     </nav>
 
-    <!-- About/Purpose Section -->
-    <section id="about">
-        <h2>About</h2>
-        <p>This website helps reduce food waste by connecting local bakeries, grocery stores, and restaurants with shelters and individuals that need food assistance. Our goal is to minimize food waste and ensure that the food is distributed to those in need in our community.</p>
-    </section>
-
-    <!-- Google Maps Section -->
-    <section id="map-section">
-        <h2>Find Food Providers Nearby</h2>
-        <div id="map"></div>
-    </section>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+</head>
+<body>
 
     <!-- Create Account/Login Section -->
     <section id="account">
@@ -108,10 +96,9 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, Go
         <div id="accountStatus"></div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 Food Waste Reduction Website</p>
-    </footer>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
 
     <script>
         // Initialize Firebase (Use your Firebase credentials)
@@ -126,51 +113,6 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, Go
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const db = firebase.firestore();
-
-        // Initialize the Google Map
-        function initMap() {
-            const options = {
-                zoom: 10,
-                center: { lat: 40.4259, lng: -86.9081 }
-            };
-
-            const map = new google.maps.Map(document.getElementById('map'), options);
-
-            // uses geolocation API to get user's current location
-            // note: geolocation API may be off by one or two blocks
-            if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                const userLocation = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
-
-                // Update map center to user's current location
-                map.setCenter(userLocation);
-
-                // Place a marker at the user's current location
-                new google.maps.Marker({
-                    position: userLocation,
-                    map: map,
-                    title: 'Your Current Location'
-                });
-            },
-            (error) => {
-                console.error("Error getting location: ", error);
-                // Fallback behavior if geolocation fails
-            }
-        );
-    } else {
-        console.error("Geolocation not supported by this browser.");
-    }
-            //const marker = new google.maps.Marker({
-               // position: { lat: 40.4259, lng: -86.9081 },
-                //map: map,
-                //title: 'Food Provider Location'
-            //});
-        }
-
 
         // Firebase Authentication (Sign Up and Login)
         function signUp() {
@@ -206,43 +148,34 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, Go
         }
 
         function googleSignIn() {
-    // Set up Google provider
-    
-    const provider = new firebase.auth.GoogleAuthProvider();
-
-    // Sign in with a popup window
-    auth.signInWithPopup(provider)
-        .then((result) => {
-            // Get user info from result
-            const user = result.user;
-
-            // Check if the user already exists in Firestore
-            db.collection('users').doc(user.uid).get().then((doc) => {
-                if (!doc.exists) {
-                    // New user, save data in Firestore
-                    db.collection('users').doc(user.uid).set({
-                        email: user.email,
-                        name: user.displayName,
-                        profilePicture: user.photoURL,
-                        userType: 'recipient', // Example field
-                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                    }).then(() => {
-                        document.getElementById('accountStatus').innerText = 'Google Sign-In successful, account created!';
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    const user = result.user;
+                    db.collection('users').doc(user.uid).get().then((doc) => {
+                        if (!doc.exists) {
+                            db.collection('users').doc(user.uid).set({
+                                email: user.email,
+                                name: user.displayName,
+                                profilePicture: user.photoURL,
+                                userType: 'recipient',
+                                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                            }).then(() => {
+                                document.getElementById('accountStatus').innerText = 'Google Sign-In successful, account created!';
+                            }).catch((error) => {
+                                console.error('Error saving user data:', error);
+                            });
+                        } else {
+                            document.getElementById('accountStatus').innerText = 'Welcome back, ' + user.displayName + '!';
+                        }
                     }).catch((error) => {
-                        console.error('Error saving user data:', error);
+                        console.error("Error fetching user data:", error);
                     });
-                } else {
-                    // Existing user
-                    document.getElementById('accountStatus').innerText = 'Welcome back, ' + user.displayName + '!';
-                }
-            }).catch((error) => {
-                console.error("Error fetching user data:", error);
-            });
-        })
-        .catch((error) => {
-            document.getElementById('accountStatus').innerText = 'Google Sign-In failed: ' + error.message;
-        });
-}
+                })
+                .catch((error) => {
+                    document.getElementById('accountStatus').innerText = 'Google Sign-In failed: ' + error.message;
+                });
+        }
     </script>
 </body>
 </html>
