@@ -1,3 +1,7 @@
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider, signInWithRedirect } from "firebase/auth";
+<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-database.js"></script>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -93,8 +97,7 @@
             
             <button type="button" onclick="signUp()">Sign Up</button>
             <button type="button" onclick="login()">Login</button>
-            <button type="button" onclck = "googleSignIn()"> Sign In With Google</button>
-            <div id=""accountStatus"></div>
+            <button type="button" onclick = "googleSignIn()"> Sign In With Google</button>
         </form>
         <div id="accountStatus"></div>
     </section>
@@ -175,6 +178,7 @@
 
         function googleSignIn() {
     // Set up Google provider
+    
     const provider = new firebase.auth.GoogleAuthProvider();
 
     // Sign in with a popup window
