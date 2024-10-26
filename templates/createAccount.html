@@ -3,27 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account</title>
+    <title>Meals Matter - Create Account</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #4CAF50;
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            font-size: 18px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+
+        nav a {
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            background-color: #4CAF50;
+            transition: background-color 0.3s ease;
+        }
+
+        section#account {
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        section#account h2 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 28px;
+        }
+
+        form#accountForm {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        form#accountForm label {
+            font-size: 16px;
+            color: #555;
+        }
+
+        form#accountForm input {
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        form#accountForm input:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
+        }
+
+        button {
+            padding: 12px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #accountStatus {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
+
+    <!-- Header -->
+    <header>
+        <h1>Meals Matter</h1>
+        <p>Connecting food providers with shelters and individuals in need</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="about.html">Our Mission</a>
+        <a href="map.html">Map</a>
+        <a href="createAccount.html">Sign Up/Login</a>
+    </nav>
 
     <!-- Create Account/Login Section -->
     <section id="account">
         <h2>Create Account or Login</h2>
         <form id="accountForm">
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" required><br><br>
-            
-            <label for="password">Password:</label><br>
-            <input type="password" id="password" required><br><br>
-            
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="Enter your password" required>
+
             <button type="button" onclick="signUp()">Sign Up</button>
             <button type="button" onclick="login()">Login</button>
-            <button type="button" onclick = "googleSignIn()"> Sign In With Google</button>
+            <button type="button" onclick="googleSignIn()">Sign In With Google</button>
         </form>
         <div id="accountStatus"></div>
     </section>
 
+    <!-- Firebase and Authentication Scripts -->
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
@@ -105,5 +237,10 @@
                 });
         }
     </script>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Meals Matter. All rights reserved.</p>
+    </footer>
 </body>
 </html>

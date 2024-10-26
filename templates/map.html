@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meals Matter - Map</title>
+    <title>Meals Matter</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,6 +15,24 @@
             padding: 20px;
             text-align: center;
             color: white;
+        }
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #333;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        section {
+            padding: 20px;
         }
         #map {
             height: 400px;
@@ -30,6 +48,32 @@
             width: 100%;
         }
     </style>
+    <!-- Google Maps API -->
+    <script async
+    src="{{ api_url }}">
+    </script>
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Meals Matter</h1>
+        <p>Connecting food providers with shelters and individuals in need</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="about.html">Our Mission</a>
+        <a href="map.html">Map</a>
+        <a href="createAccount.html">Sign Up/Login</a>
+    </nav>
 
     <!-- Google Maps API -->
     <script type="module">
@@ -43,12 +87,6 @@
 
 </head>
 <body>
-
-    <!-- Header -->
-    <header>
-        <h1>Meals Matter</h1>
-        <p>Connecting food providers with shelters and individuals in need</p>
-    </header>
 
     <!-- Google Maps Section -->
     <section id="map-section">
