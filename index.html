@@ -46,20 +46,15 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, Go
             background-color: #333;
             color: white;
             text-align: center;
-            padding: 0px 0;
+            padding: 10px 0;
             position: fixed;
             bottom: 0;
             width: 100%;
         }
     </style>
     <!-- Google Maps API -->
-    <script type="module">
-        const googleApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-    
-        const script = document.createElement('script');
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${googleApiKey}&callback=initMap`;
-        script.async = true;
-        document.head.appendChild(script);
+    <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXh9iR3N4E5svMN6V93Kdd3poYfzMUZwc&callback=initMap">
     </script>
 
     <!-- Firebase SDKs -->

@@ -53,14 +53,9 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, Go
         }
     </style>
     <!-- Google Maps API -->
-    <script type="module">
-        const googleApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-    
-        const script = document.createElement('script');
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${googleApiKey}&callback=initMap`;
-        script.async = true;
-        document.head.appendChild(script);
-    </script>    
+    <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXh9iR3N4E5svMN6V93Kdd3poYfzMUZwc&callback=initMap">
+    </script>
 
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
@@ -121,14 +116,13 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, Go
     <script>
         // Initialize Firebase (Use your Firebase credentials)
         const firebaseConfig = {
-            apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-            authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-            projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-            storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-            messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-            appId: import.meta.env.VITE_FIREBASE_APP_ID
+            apiKey: "YOUR_FIREBASE_API_KEY",
+            authDomain: "your-project-id.firebaseapp.com",
+            projectId: "your-project-id",
+            storageBucket: "your-project-id.appspot.com",
+            messagingSenderId: "your-messaging-sender-id",
+            appId: "your-app-id"
         };
-        
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const db = firebase.firestore();
