@@ -1,2 +1,8 @@
+# Ignore virtual environment for Python
 .venv
+
+# Ignore Firebase credentials file
 meals-matter-firebase-adminsdk-cgdbi.json
+
+# Ignore environment variables file where API keys are stored
+.env
