@@ -29,11 +29,12 @@ def createAccount():
     api_url = f"https://maps.googleapis.com/maps/api/js?key={api_key}&callback=initMap"
     return render_template('createAccount.html', api_url=api_url)
 
-@app.route('/home.html')
+# Home will route to index as home.html is unused
+@app.route('/index.html')
 def home():
     api_key = os.getenv('GOOGLE_MAPS_API_KEY')
     api_url = f"https://maps.googleapis.com/maps/api/js?key={api_key}&callback=initMap"
-    return render_template('home.html', api_url=api_url)
+    return render_template('index.html', api_url=api_url)
 
 @app.route('/map.html')
 def map():

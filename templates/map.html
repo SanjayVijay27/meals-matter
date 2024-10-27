@@ -135,14 +135,9 @@
     </style>
 
     <!-- Google Maps API -->
-    <script type="module">
-        const googleApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-    
-        const script = document.createElement('script');
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${googleApiKey}&callback=initMap`;
-        script.async = true;
-        document.head.appendChild(script);
-    </script>    
+    <script async
+    src="{{ api_url }}">
+    </script>
 
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
@@ -168,10 +163,10 @@
 
     <!-- Distributor Matching Section -->
     <form action="/match" method="POST">
-        <label for="address">Enter your address:</label>
+        <label for="address">Address:</label>
         <input type="text" id="address" name="address" required>
         
-        <label for="radius">Enter the radius (in meters) within which to find distributors:</label>
+        <label for="radius">Radius (mi):</label>
         <input type="text" id="radius" name="radius" required>
 
         <button type="submit">Submit</button>
