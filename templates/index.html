@@ -3,22 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meals Matter</title>
+    <title>MealsMatter</title>
     <style>
         /* General Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom right, #e0ffe8, #c7f5dc); /* Body Gradient */
+            background: linear-gradient(to bottom right, #e0ffe8, #c7f5dc);
             color: #333;
             line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
-
-        /* Header Styles */
         header {
             background-color: #4CAF50;
             padding: 20px;
@@ -27,7 +22,7 @@
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        /* Navigation Styles */
+    
         nav {
             display: flex;
             justify-content: space-around;
@@ -45,31 +40,41 @@
             background-color: #ddd;
             color: black;
         }
-
-        /* Section Styles */
-        section {
+        .container {
             padding: 20px;
-            margin: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        section {
+            padding: 40px 20px;
+            margin: 20px 0;
             border-radius: 10px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: white;
         }
-
-        /* Specific Gradient for About Section */
-        #about {
-            background: linear-gradient(to bottom right, #e0ffe8, #bdf0d3); /* Gradient background for About section */
-            padding: 40px;
+        #mission {
+            background: linear-gradient(to bottom right, #e0ffe8, #bdf0d3);
             text-align: center;
-            color: #333;
+            color: #4CAF50;
         }
-
-        /* Footer Styles */
+        #how-it-works, #get-involved {
+            text-align: center;
+        }
+        .button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+        }
         footer {
             background-color: #333;
             color: white;
             text-align: center;
             padding: 10px 0;
             font-size: 0.9rem;
-            margin-top: auto;
         }
     </style>
 </head>
@@ -77,8 +82,8 @@
 
     <!-- Header -->
     <header>
-        <h1>Meals Matter</h1>
-        <p>Connecting food providers with shelters and individuals in need</p>
+        <h1>MealsMatter</h1>
+        <p>Recognizing the meaning behind every meal</p>
     </header>
 
     <!-- Navigation -->
@@ -89,9 +94,20 @@
         <a href="createAccount.html">Sign Up/Login</a>
     </nav>
 
+    <div class="container">
+
+        <!-- Get Involved Section -->
+        <section id="get-involved">
+            <h2>Get Involved</h2>
+            <p>Be part of the movement. Be part of the change. <br>Let's build a sustainable future where every meal finds a purpose.</r></p>
+            <a href="about.html" class="button">Learn More</a>
+        </section>
+
+    </div>
+
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Food Waste Reduction Website</p>
+        <h4>&copy; 2024 MealsMatter | <a href="mailto:contact@mealsmatter.org" style="color: white;">contact@mealsmatter.org</a></h4>
     </footer>
 
 </body>
