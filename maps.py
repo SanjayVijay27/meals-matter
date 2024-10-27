@@ -11,7 +11,10 @@ def find_distance(origin, destination):
     matrix = gmaps.distance_matrix(origins=origin, destinations=destination)
 
     # Return distance in miles
-    return matrix['rows'][0]['elements'][0]['distance']['value'] / 1609.34
+    try:
+        return matrix['rows'][0]['elements'][0]['distance']['value'] / 1609.34
+    except:
+        return -1
 
 # Test Google Maps API
 if __name__ == '__main__':

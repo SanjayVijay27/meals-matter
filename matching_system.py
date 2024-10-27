@@ -7,7 +7,8 @@ def find_distributors_radius(location, radius):
     for user in users:
         if user['account_type'] == 'recipient':
             continue
-        if maps.find_distance(location, user['location']) < radius:
+        distance = maps.find_distance(location, user['location'])
+        if distance < radius and distance > 0:
             valid_distributors.append(user)
     
     return valid_distributors
@@ -21,10 +22,10 @@ def find_nearest_distributor(location):
             continue
 
         distance = maps.find_distance(location, user['location'])
-        if nearest_distributor is None:
+        if nearest_distributor is None and distance > 0:
             nearest_distributor = user
             min_distance = distance
-        elif distance < min_distance:
+        elif distance < min_distance and distance > 0:
             nearest_distributor = user
             min_distance = distance
     
