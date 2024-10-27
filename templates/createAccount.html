@@ -46,10 +46,6 @@
             width: 100%;
         }
     </style>
-    <!-- Google Maps API -->
-    <script async
-    src="{{ api_url }}">
-    </script>
     
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
@@ -82,8 +78,8 @@
     <!-- Create Account/Login Section -->
     <section id="account">
         <h2>Create Account or Login</h2>
-        <form id="accountForm">
-            <label for="email">Email:</label><br>
+        <!-- <form id="accountForm">
+            <label for="email">Username:</label><br>
             <input type="email" id="email" required><br><br>
             
             <label for="password">Password:</label><br>
@@ -92,7 +88,15 @@
             <button type="button" onclick="signUp()">Sign Up</button>
             <button type="button" onclick="login()">Login</button>
             <button type="button" onclick = "googleSignIn()"> Sign In With Google</button>
+        </form> -->
+        <form action="/login" method="POST">
+            <label for="username">Enter your username:</label>
+            <input type="username" id="username" name="username" required>
+            <label for="password">Enter your password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Submit</button>
         </form>
+        <h2>{{ message }}</h2>
         <div id="accountStatus"></div>
     </section>
 
@@ -103,12 +107,13 @@
     <script>
         // Initialize Firebase (Use your Firebase credentials)
         const firebaseConfig = {
-            apiKey: "YOUR_FIREBASE_API_KEY",
-            authDomain: "your-project-id.firebaseapp.com",
-            projectId: "your-project-id",
-            storageBucket: "your-project-id.appspot.com",
-            messagingSenderId: "your-messaging-sender-id",
-            appId: "your-app-id"
+            apiKey: "AIzaSyB-XVncUU0ncGPmKJPYTg5N9QFNPgNgNwo",
+            authDomain: "meals-matter.firebaseapp.com",
+            projectId: "meals-matter",
+            storageBucket: "meals-matter.appspot.com",
+            messagingSenderId: "439580802465",
+            appId: "1:439580802465:web:cb2b05e4e1f31c42c15fe0",
+            measurementId: "G-YHG9W415NR"
         };
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
