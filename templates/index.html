@@ -10,19 +10,30 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom right, #e0ffe8, #c7f5dc);
+            background: linear-gradient(to bottom right, #e0ffe8, #bdf0d3);
             color: #333;
             line-height: 1.6;
         }
         header {
-            background-color: #4CAF50;
+            background: linear-gradient(to bottom right, #4CAF50, #66BB6A);
             padding: 20px;
-            text-align: center;
             color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
-
-    
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex-grow: 1;
+        }
+        header img {
+            height: 100px; /* 2x size */
+            margin-right: 15px;
+        }
         nav {
             display: flex;
             justify-content: space-around;
@@ -50,15 +61,8 @@
             margin: 20px 0;
             border-radius: 10px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: white;
-        }
-        #mission {
-            background: linear-gradient(to bottom right, #e0ffe8, #bdf0d3);
-            text-align: center;
-            color: #4CAF50;
-        }
-        #how-it-works, #get-involved {
-            text-align: center;
+            background: linear-gradient(to bottom right, #e0ffe8, #c7f5dc);
+            color: #333;
         }
         .button {
             padding: 10px 20px;
@@ -68,6 +72,47 @@
             text-decoration: none;
             border-radius: 5px;
             display: inline-block;
+        }
+        /* Articles Section Styles */
+        .articles-section {
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .article-card {
+            background: linear-gradient(to bottom right, #ffffff, #e0ffe8);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            width: 20%;
+        }
+        .article-card h3 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            color: #4CAF50;
+        }
+        .article-details {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 15px;
+        }
+        .article-summary {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        .read-more {
+            text-decoration: none;
+            color: #fff;
+            background-color: #4CAF50;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+        }
+        .read-more:hover {
+            background-color: #45a049;
         }
         footer {
             background-color: #333;
@@ -80,10 +125,13 @@
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- Header with Logo -->
     <header>
-        <h1>MealsMatter</h1>
-        <p>Recognizing the meaning behind every meal</p>
+        <img src="https://files.catbox.moe/wnxh4t.webp" alt="MealsMatter Logo">
+        <div class="header-content">
+            <h1>MealsMatter</h1>
+            <p>Recognizing the meaning behind every meal</p>
+        </div>
     </header>
 
     <!-- Navigation -->
@@ -99,10 +147,37 @@
         <!-- Get Involved Section -->
         <section id="get-involved">
             <h2>Get Involved</h2>
-            <p>Be part of the movement. Be part of the change. <br>Let's build a sustainable future where every meal finds a purpose.</r></p>
+            <p>Be part of the movement. Be part of the change. <br>Let's build a sustainable future where every meal finds a purpose.</p>
             <a href="about.html" class="button">Learn More</a>
         </section>
 
+        <!-- Articles Section -->
+        <section id="articles">
+            <h2>Check out the latest stories here:</h2>
+            <div class="articles-section">
+                <!-- Article 1 -->
+                <div class="article-card">
+                    <h3>Community Food Drive Success</h3>
+                    <div class="article-details">by Jane Doe — October 20, 2024</div>
+                    <p class="article-summary">Meals Matter recently held a food drive, collecting over 1,000 pounds of food for local shelters. Community members generously donated, supporting those in need.</p>
+                    <a href="https://www.lipsum.com/" class="read-more" target="_blank">Read More</a>
+                </div>
+                <!-- Article 2 -->
+                <div class="article-card">
+                    <h3>Partnering with Local Bakeries</h3>
+                    <div class="article-details">by John Smith — October 18, 2024</div>
+                    <p class="article-summary">Local bakeries are now collaborating with Meals Matter to donate unsold goods at the end of each day, helping to reduce food waste and feed the community.</p>
+                    <a href="https://www.lipsum.com/" class="read-more" target="_blank">Read More</a>
+                </div>
+                <!-- Article 3 -->
+                <div class="article-card">
+                    <h3>Volunteer Spotlight: Making a Difference</h3>
+                    <div class="article-details">by Sarah Lee — October 15, 2024</div>
+                    <p class="article-summary">Our volunteers are the heart of Meals Matter. Meet Alex Li, Sanjay Vijay, and Rui Meng, the trio behind this.</p>
+                    <a href="https://www.lipsum.com/" class="read-more" target="_blank">Read More</a>
+                </div>
+            </div>
+        </section>
     </div>
 
     <!-- Footer -->

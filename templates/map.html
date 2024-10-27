@@ -34,8 +34,8 @@
         }
 
         nav a:hover {
-            background-color: #ddd;
-            color: black;
+            background-color: #45a049;
+            color: white;
         }
 
         section {
@@ -54,6 +54,7 @@
             height: 400px;
             width: 100%;
             border: 1px solid #ccc;
+            margin-bottom: 20px;
         }
 
         form {
@@ -61,20 +62,23 @@
             padding: 15px;
             background-color: #fff;
             border: 1px solid #ddd;
+            border-radius: 4px;
         }
 
         form label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
             font-size: 14px;
             color: #333;
         }
 
         form input {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             margin-bottom: 15px;
             border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
         }
 
         button {
@@ -84,6 +88,7 @@
             border: none;
             cursor: pointer;
             font-size: 14px;
+            border-radius: 4px;
         }
 
         button:hover {
@@ -107,15 +112,25 @@
             background-color: #333;
             color: white;
             text-align: center;
-            padding: 15px 0;
+            padding: 15px;
             position: relative;
             bottom: 0;
             width: 100%;
         }
 
-        footer p {
+        footer h4 {
             margin: 0;
             font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+            #map {
+                height: 300px;
+            }
         }
     </style>
 
@@ -123,7 +138,6 @@
     <script async
     src="{{ api_url }}">
     </script>
-
 
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
@@ -151,8 +165,10 @@
     <form action="/match" method="POST">
         <label for="address">Enter your address:</label>
         <input type="text" id="address" name="address" required>
+        
         <label for="radius">Enter the radius (in meters) within which to find distributors:</label>
         <input type="text" id="radius" name="radius" required>
+
         <button type="submit">Submit</button>
     </form>
 
