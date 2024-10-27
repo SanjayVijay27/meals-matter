@@ -1,3 +1,4 @@
+import database
 import matching_system
 
 from dotenv import load_dotenv
@@ -49,12 +50,32 @@ def match():
     
     # Find distributors
     users = matching_system.find_distributors_radius(address, radius)
-    names = [user['location'] for user in users]
+    names = [f"{user['username']}, {user['location']}" for user in users]
 
     global api_url
 
     # Render the HTML with the result
     return render_template('map.html', api_url=api_url, names=names)
+
+@app.route('/login', methods=['POST'])
+def login():
+    # Get the info from the form
+    username = request.form['username']
+    password = request.form['password']
+
+    # Use the hash on the password
+    encrypted = database.hash_password(password)
+
+    if database.is_new_account(username):
+        database.add_user(username, password, 'distributor', "610 Purdue Mall, West Lafayette, IN 47907")
+        message = f"Welcome, {username}!"
+    elif database.validate_account(username, password):
+        message = f"Welcome back, {username}!"
+    else:
+        message = "Invalid username/password"
+
+    # Render the HTML with the result
+    return render_template('createAccount.html', message=message)
 
 if __name__ == '__main__':
     app.run(debug=True)
